@@ -21,7 +21,7 @@ class Enigma
       reduced_keys << key
     end
   end
-
+  
   def decrypt(string, key, date)
     #returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.
   end
