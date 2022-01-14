@@ -14,6 +14,19 @@ module Key_Shifter
     new_key_array << key_array[1] + key_array[2]
     new_key_array << key_array[2] + key_array[3]
     new_key_array << key_array[3] + key_array[4]
+    return reduce_to_keys(new_key_array)
+    # binding.pry
+  end
+
+  def reduce_to_keys(key_array)
+    reduced_keys = []
+    key_array.each do |key|
+      key = key.to_i
+      if key > 27
+        key = key % 27
+      end
+      reduced_keys << key
+    end
   end
 
   def offset_grabber(date)
@@ -26,4 +39,7 @@ module Key_Shifter
     binding.pry
   end
 
+  def characters
+    char_map = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
+  end
 end
