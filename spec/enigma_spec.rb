@@ -28,6 +28,6 @@ describe do Enigma
     enigma = Enigma.new
     expect(enigma.offset_grabber("040895")).to eq([1, 0, 2, 5])
     #this will change every day!
-    expect(enigma.offset_grabber).to be("13  1  22")
+    # expect(enigma.offset_grabber).to be("13  1  22")
   end
 end

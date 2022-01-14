@@ -29,13 +29,18 @@ module Key_Shifter
     end
   end
 
-  def offset_grabber(date)
-    offset_array = []
-    offset = date.to_i * date.to_i
-    offset_array = offset.to_s.chars.flat_map(&:to_i)
-    while offset_array.length > 4
-      offset_array.slice!(0)
+  def offset_grabber(date = Date.today)
+    if date.class == Date
+      stripped_date = date.strftime("%-d, %-m, %-y").gsub(/,/, ' ')
+    else
+      offset_array = []
+      offset = (date.to_i ** 2)
+      offset_array = offset.to_s.chars.flat_map(&:to_i)
+      while offset_array.length > 4
+        offset_array.slice!(0)
+      end
     end
+
     return offset_array
   end
 
