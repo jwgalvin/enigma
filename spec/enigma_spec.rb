@@ -5,6 +5,7 @@ require 'rspec'
 require './lib/enigma'
 require './lib/key_shifter'
 
+
 describe do Enigma
   it 'exists and takes arguments' do
     enigma = Enigma.new
@@ -16,6 +17,6 @@ describe do Enigma
 
   it 'will test the character map' do
     enigma = Enigma.new
-    expect(enigma.char_map).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
+    expect(enigma.characters).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
   end
 end

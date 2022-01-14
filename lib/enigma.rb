@@ -3,8 +3,10 @@ require_relative './key_shifter'
 class Enigma
   include Key_Shifter
 
-  def initialize
+  attr_reader :characters
 
+  def initialize
+    @characters = ('a'..'z').to_a << ' '
   end
 
   def encrypt(string, key, date)
@@ -19,9 +21,5 @@ class Enigma
     #returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.
   end
 
-  def char_map
-    set = characters
-    # binding.pry
-    return set
-  end
+
 end
