@@ -36,7 +36,7 @@ module Key_Shifter
     while offset_array.length > 4
       offset_array.slice!(0)
     end
-    binding.pry
+    return offset_array
   end
 
   def characters
