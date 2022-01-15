@@ -18,7 +18,7 @@ describe do Enigma
     enigma = Enigma.new
     key = Range.new(1, 5)
     expect(enigma.key_maker).to be_a(String)
-
+    expect(enigma.key_maker.length).to eq(5)
   end
 
   it 'will test the character map' do
