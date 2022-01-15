@@ -14,6 +14,13 @@ describe do Enigma
     expect(enigma).to be_a(Enigma)
   end
 
+  it "will test a random key generator" do
+    enigma = Enigma.new
+    key = Range.new(1, 5)
+    expect(enigma.key_maker).to be_a(String)
+
+  end
+
   it 'will test the character map' do
     enigma = Enigma.new
     expect(enigma.characters).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
