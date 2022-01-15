@@ -48,9 +48,10 @@ describe do Enigma
     expect(enigma.shifter(["02","27","71", "15"], [1, 0, 2, 5])).to eq({"A"=>3, "B"=>27, "C"=>73, "D"=>20})
   end
 
-  it "will encrypt things" do
+  it "will decrypt things" do
     enigma = Enigma.new
-    expect(enigma.encrypt("HELLO WORLD", "02715", "040895")).to eq({:encryption => "keder ohulw", :key => "02715", :date => "040895"})
+    expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({:encryption => "HELLO WORLD", :key => "02715", :date => "040895"})
   end
+
 
 end
