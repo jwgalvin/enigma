@@ -59,7 +59,7 @@ module Generator  #This module contains the date_generator and the shifter/combi
   end
 
   def key_maker
-    rand(999999).to_s.rjust(5, '0')
+    rand(99999).to_s.rjust(5, '0')
   end
-  
+
 end
