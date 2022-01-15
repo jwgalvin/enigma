@@ -22,7 +22,7 @@ module Generator  #This module contains the date_generator and the shifter/combi
       reduced_keys << key
     end
   end
-  def offset_grabber(date = Date.today)
+  def offset_grabber(date)
     if date.class == Date
       stripped_date = date.strftime("%-d, %-m, %-y").gsub(/,/, ' ')
     else
@@ -49,4 +49,5 @@ module Generator  #This module contains the date_generator and the shifter/combi
     message.downcase.split('').find_all {|character| @characters.include?(character)}
   end
 
+  
 end
