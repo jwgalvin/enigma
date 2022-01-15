@@ -45,4 +45,8 @@ module Generator  #This module contains the date_generator and the shifter/combi
       }
   end
 
+  def remove_specials(message) #this will remove spec characters and downcase the message.
+    message.downcase.split('').find_all {|character| @characters.include?(character)}
+  end
+
 end

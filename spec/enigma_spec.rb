@@ -26,7 +26,7 @@ describe do Enigma
 
   it "will remove specials" do
     enigma = Enigma.new
-    expect(enigma.remove_specials("$#ME!@{[*]").to eq(["me"])
+    expect(enigma.remove_specials("$#ME!@{[*]")).to eq(["m", "e"])
   end
 
   it 'will test keys here, manual input now' do
@@ -47,4 +47,5 @@ describe do Enigma
     expect(enigma.shifter(["02","27","71", "15"], [1, 0, 2, 5]).values).to eq([3, 27, 73, 20])
     expect(enigma.shifter(["02","27","71", "15"], [1, 0, 2, 5])).to eq({"A"=>3, "B"=>27, "C"=>73, "D"=>20})
   end
+
 end
