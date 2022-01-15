@@ -1,11 +1,5 @@
-# possible requires up here
-module Key_Shifter
 
-  def adjust(key)
-    # check_key_length(key)
-    # binding.pry
-
-  end
+module Generator  #This module contains the date_generator and the shifter/combination.
 
   def key_grabber(key)
     key_array = key.chars
@@ -28,7 +22,6 @@ module Key_Shifter
       reduced_keys << key
     end
   end
-
   def offset_grabber(date = Date.today)
     if date.class == Date
       stripped_date = date.strftime("%-d, %-m, %-y").gsub(/,/, ' ')
@@ -40,8 +33,16 @@ module Key_Shifter
         offset_array.slice!(0)
       end
     end
-
     return offset_array
+  end
+
+  def shifter(key, offset)
+    encrypt_hash = {
+      "A" => (key[0].to_i + offset[0]),
+      "B" => (key[1].to_i + offset[1]),
+      "C" => (key[2].to_i + offset[2]),
+      "D" => (key[3].to_i + offset[3])
+      }
   end
 
 end

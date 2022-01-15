@@ -1,7 +1,7 @@
-require_relative './key_shifter'
-
+require_relative './encrypter'
+require_relative './generator'
 class Enigma
-  include Key_Shifter
+  include Generator
 
   attr_reader :characters
 
@@ -14,7 +14,7 @@ class Enigma
     # check_key_length(key)
     key_array = key_grabber(key)
     offset_array = offset_grabber(date)
-
+    shift = shifter(key_array, offset_array)
   end
 
   def decrypt(string, key, date)
