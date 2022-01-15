@@ -1,14 +1,17 @@
 require_relative './encrypter'
 require_relative './generator'
-require_relative './rotater'
 
-class Enigma
+class Enigma 
   include Generator
 
   attr_reader :characters
 
-  def initialize
-    @characters = ('a'..'z').to_a << ' '
+   def initialize
+     @characters = ('a'..'z').to_a << ' '
+   end
+
+  def rotation(char) # this will rotate to the position argument
+    @characters.rotate(@characters.index(char))
   end
 
   def encrypt(string, key, date)
