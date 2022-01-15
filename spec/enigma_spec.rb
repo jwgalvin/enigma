@@ -24,6 +24,11 @@ describe do Enigma
     expect(enigma.rotation('c')).to eq(["c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b" ])
   end
 
+  it "will remove specials" do
+    enigma = Enigma.new
+    expect(enigma.remove_specials("$#ME!@{[*]").to eq(["me"])
+  end
+
   it 'will test keys here, manual input now' do
     enigma = Enigma.new
     expect(enigma.key_grabber("02715")).to eq(["02","27","71", "15"])
