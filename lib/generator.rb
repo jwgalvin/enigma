@@ -49,5 +49,7 @@ module Generator  #This module contains the date_generator and the shifter/combi
     message.downcase.split('').find_all {|character| @characters.include?(character)}
   end
 
-  
+  def encrypt_return(secret_message, key, date)
+    encrypt_hash = {'encryption': secret_message.join, 'key': key, 'date': date}
+  end
 end

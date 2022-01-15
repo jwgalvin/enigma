@@ -32,7 +32,7 @@ class Enigma
         secret_message << rotation(char).rotate(shift["D"])[0]
       end
     end
-    secret_message
+    encrypt_return(secret_message, key, date)
 
   end
 
