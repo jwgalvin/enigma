@@ -4,7 +4,7 @@ require 'pry'
 require 'rspec'
 require './lib/enigma'
 require './lib/generator'
-require './lib/encrypter'
+#require './lib/encrypt'
 
 
 describe do Enigma
@@ -44,7 +44,7 @@ describe do Enigma
 
   it 'will test offset here, manual input now' do
     enigma = Enigma.new
-    expect(enigma.offset_grabber("040895")).to eq([1, 0, 2, 5])
+    expect(enigma.offset_grabber("040895")).to eq("1025")
     #this will change every day!
     # expect(enigma.offset_grabber).to be([4, 8, 8, 4])
   end
@@ -58,6 +58,8 @@ describe do Enigma
   it "will encrypt things" do
     enigma = Enigma.new
     expect(enigma.encrypt("HELLO WORLD", "02715", "040895")).to eq({:encryption => "keder ohulw", :key => "02715", :date => "040895"})
+    #this test is for randomized key and offset.
+    #expect(enigma.encrypt("HELLO WORLD")).to eq({encryption key})
   end
 
   it "will decrypt things" do
