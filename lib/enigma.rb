@@ -1,5 +1,7 @@
 require_relative './encrypter'
 require_relative './generator'
+require_relative './rotater'
+
 class Enigma
   include Generator
 
