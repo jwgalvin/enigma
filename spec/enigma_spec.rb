@@ -4,7 +4,6 @@ require 'pry'
 require 'rspec'
 require './lib/enigma'
 require './lib/generator'
-#require './lib/encrypt'
 
 
 describe do Enigma
@@ -67,4 +66,9 @@ describe do Enigma
     expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({:encryption => "hello world", :key => "02715", :date => "040895"})
   end
 
+  it "tests the date stripper" do
+    enigma = Enigma.new
+    test_date1 = Date.new(1995,8,4)
+    expect(enigma.date_stripper(test_date1)).to eq("040895")
+  end
 end
