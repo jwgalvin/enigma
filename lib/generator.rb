@@ -40,7 +40,7 @@ module Generator  #This module contains the date_generator and the shifter/combi
 
 
   def decrypt_return(secret_message, key, date) # This helper formats the return
-    decrypt_hash = {'encryption': secret_message.join, 'key': key, 'date': date_stripper(date)}
+    decrypt_hash = {'decrypted': secret_message.join, 'key': key, 'date': date_stripper(date)}
   end
 
   def key_maker

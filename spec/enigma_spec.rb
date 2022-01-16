@@ -35,12 +35,6 @@ describe do Enigma
     expect(enigma.remove_specials("$#ME!@{[*]")).to eq(["m", "e"])
   end
 
-  # xit 'will test keys here, manual input now' do
-  #   enigma = Enigma.new
-  #   expect(enigma.key_grabber("02715")).to eq(["02","27","71", "15"])
-  #   # expect(enigma.shift)
-  # end
-
   it 'will test offset here, manual input now' do
     enigma = Enigma.new
     expect(enigma.offset_grabber("040895")).to eq("1025")
@@ -61,9 +55,9 @@ describe do Enigma
     #expect(enigma.encrypt("HELLO WORLD")).to eq({encryption key})
   end
 
-  xit "will decrypt things" do
+  it "will decrypt things" do
     enigma = Enigma.new
-    expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({:encryption => "hello world", :key => "02715", :date => "040895"})
+    expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({:decrypted => "hello world", :key => "02715", :date => "040895"})
   end
 
   it "tests the date stripper" do
@@ -73,4 +67,15 @@ describe do Enigma
     expect(enigma.date_stripper(test_date1)).to eq("040895")
     expect(enigma.date_stripper(test_date2)).to eq("040895")
   end
+
+  it "will test decrypted hash" do
+    enigma = Enigma.new
+    expect(enigma.decrypt_return(["k","e","d","e","r", " ", "o", "h", "u", "l", "w"], "02715", "040895")).to eq({ :date => "040895", :decrypted => "keder ohulw", :key => "02715" })
+  end
+
+  it "will test encrypted hash" do
+    enigma = Enigma.new
+    expect(enigma.encrypt_return(["k","e","d","e","r", " ", "o", "h", "u", "l", "w"], "02715", "040895")).to eq({ :date => "040895", :encryption => "keder ohulw", :key => "02715" })
+  end
+
 end
