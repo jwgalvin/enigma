@@ -1,27 +1,20 @@
 
 module Generator  #This module contains the date_generator and the shifter/combination.
 
-  def key_grabber(key) # This converts the 5 digit key into 5- 2 digit numbers
-    key_array = key.chars
-    new_key_array = []
-    new_key_array << key_array[0] + key_array[1]
-    new_key_array << key_array[1] + key_array[2]
-    new_key_array << key_array[2] + key_array[3]
-    new_key_array << key_array[3] + key_array[4]
-    reduce_to_keys(new_key_array)
-    # binding.pry
+  def key_grabber(key)
+    pairs = key.split("").map(&:to_i).each_cons(2).map {|num| num.join}
   end
 
-  def reduce_to_keys(key_array) # reduces any key value over 27 the modulo
-    reduced_keys = []
-    key_array.each do |key|
-      key = key.to_i
-      if key > 27
-        key = key % 27
-      end
-      reduced_keys << key
-    end
-  end
+  # def reduce_to_keys(key_array) # reduces any key value over 27 the modulo
+  #   reduced_keys = []
+  #   key_array.each do |key|
+  #     key = key.to_i
+  #     if key > 27
+  #       key = key % 27
+  #     end
+  #     reduced_keys << key
+  #   end
+  # end
 
   def offset_grabber(date = Date.today) #this converts the date into the offset
     if date.class == Date
