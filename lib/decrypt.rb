@@ -9,6 +9,6 @@ encrypted_message = File.read(encrypted, chomp:true)
 
 File.open(unencrypted, "w") do |file|
   encrypt_message = enigma.decrypt(encrypted_message.strip, key, date)
-  file.puts encrypt_message[:decryption]
+  file.puts encrypt_message[:decrypted]
     puts "Created '#{unencrypted}' with the key #{key} and date #{date} ."
 end

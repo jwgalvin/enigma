@@ -43,7 +43,7 @@ class Enigma
         secret_message << rotation(char).rotate(-shift["B"])[0]
       elsif index % 4 == 2
         secret_message << rotation(char).rotate(-shift["C"])[0]
-      else index % 4 == 2
+      else index % 4 == 3
         secret_message << rotation(char).rotate(-shift["D"])[0]
       end
     end
