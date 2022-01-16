@@ -24,12 +24,8 @@ module Generator  #This module contains the date_generator and the shifter/combi
   end
 
   def offset_grabber(date) #this converts the date into the offset
-    if date.class == Date
-      stripped_date = date.strftime("%d,%m,%y").gsub(/,/,'')
-      (stripped_date.to_i ** 2).to_s.split("").last(4)
-    else
-      (date.to_i ** 2).to_s.split("").last(4)
-    end.join
+    date_stripper(date)
+    (date.to_i ** 2).to_s.split("").last(4).join
   end
 
   def shifter(key, offset) # This merges the shift and the offset.
