@@ -57,7 +57,7 @@ describe do Enigma
 
   it "will decrypt things" do
     enigma = Enigma.new
-    expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({:encryption => "hello world", :key => "02715", :date => "040895"})
+    expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({:decrypted => "hello world", :key => "02715", :date => "040895"})
   end
 
   it "tests the date stripper" do
@@ -70,7 +70,7 @@ describe do Enigma
 
   it "will test decrypted hash" do
     enigma = Enigma.new
-    expect(enigma.decrypt_hash(["k","e","d","e","r", " ", "o", "h", "u", "l", "w"], "02715", "040895")).to eq({ :date => "040895", :decrypted => "keder ohulw", :key => "02715" })
+    expect(enigma.decrypt_return(["k","e","d","e","r", " ", "o", "h", "u", "l", "w"], "02715", "040895")).to eq({ :date => "040895", :decrypted => "keder ohulw", :key => "02715" })
   end
 
   it "will test encrypted hash" do
