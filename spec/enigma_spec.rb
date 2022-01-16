@@ -35,11 +35,11 @@ describe do Enigma
     expect(enigma.remove_specials("$#ME!@{[*]")).to eq(["m", "e"])
   end
 
-  it 'will test keys here, manual input now' do
-    enigma = Enigma.new
-    expect(enigma.key_grabber("02715")).to eq(["02","27","71", "15"])
-    # expect(enigma.shift)
-  end
+  # xit 'will test keys here, manual input now' do
+  #   enigma = Enigma.new
+  #   expect(enigma.key_grabber("02715")).to eq(["02","27","71", "15"])
+  #   # expect(enigma.shift)
+  # end
 
   it 'will test offset here, manual input now' do
     enigma = Enigma.new
@@ -48,10 +48,10 @@ describe do Enigma
     # expect(enigma.offset_grabber).to be([4, 8, 8, 4])
   end
 
-  it 'will test shifter here, manual input' do
+  it 'will test shifter; manual input' do
     enigma = Enigma.new
-    expect(enigma.shifter(["02","27","71", "15"], [1, 0, 2, 5]).values).to eq([3, 27, 73, 20])
-    expect(enigma.shifter(["02","27","71", "15"], [1, 0, 2, 5])).to eq({"A"=>3, "B"=>27, "C"=>73, "D"=>20})
+    expect(enigma.shifter("02715", "1025").values).to eq([3, 27, 73, 20])
+    expect(enigma.shifter("02715","1025")).to eq({"A"=>3, "B"=>27, "C"=>73, "D"=>20}) #this tests keys and values
   end
 
   it "will encrypt things" do
@@ -61,7 +61,7 @@ describe do Enigma
     #expect(enigma.encrypt("HELLO WORLD")).to eq({encryption key})
   end
 
-  it "will decrypt things" do
+  xit "will decrypt things" do
     enigma = Enigma.new
     expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({:encryption => "hello world", :key => "02715", :date => "040895"})
   end

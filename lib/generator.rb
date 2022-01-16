@@ -1,21 +1,6 @@
 
 module Generator  #This module contains the date_generator and the shifter/combination.
 
-  def key_grabber(key)
-    pairs = key.split("").map(&:to_i).each_cons(2).map {|num| num.join}
-  end
-
-  # def reduce_to_keys(key_array) # reduces any key value over 27 the modulo
-  #   reduced_keys = []
-  #   key_array.each do |key|
-  #     key = key.to_i
-  #     if key > 27
-  #       key = key % 27
-  #     end
-  #     reduced_keys << key
-  #   end
-  # end
-
   def offset_grabber(date = Date.today) #this converts the date into the offset
     if date.class == Date
       strip_date = date.strftime("%d,%m,%y").gsub(/,/,'')
@@ -33,12 +18,14 @@ module Generator  #This module contains the date_generator and the shifter/combi
     end
   end
 
-  def shifter(key, offset) # This merges the shift and the offset.
+  def shifter(key = key_maker, offset) # This merges the shift and the offset.
+    pairs = key.split("").map(&:to_i).each_cons(2).map {|num| num.join.to_i}
+    # binding.pry
     encrypt_hash = {
-      "A" => (key[0].to_i + offset[0].to_i),
-      "B" => (key[1].to_i + offset[1].to_i),
-      "C" => (key[2].to_i + offset[2].to_i),
-      "D" => (key[3].to_i + offset[3].to_i)
+      "A" => (pairs[0].to_i + offset[0].to_i),
+      "B" => (pairs[1].to_i + offset[1].to_i),
+      "C" => (pairs[2].to_i + offset[2].to_i),
+      "D" => (pairs[3].to_i + offset[3].to_i)
       }
   end
 
