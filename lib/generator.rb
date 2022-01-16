@@ -25,12 +25,11 @@ module Generator  #This module contains the date_generator and the shifter/combi
 
   def offset_grabber(date) #this converts the date into the offset
     if date.class == Date
-      stripped_date = date.strftime("%-d, %-m, %-y").gsub(/,/, ' ')
+      stripped_date = date.strftime("%d,%m,%y").gsub(/,/,'')
       (stripped_date.to_i ** 2).to_s.split("").last(4)
     else
       (date.to_i ** 2).to_s.split("").last(4)
     end.join
-    #return offset_array
   end
 
   def shifter(key, offset) # This merges the shift and the offset.
@@ -46,12 +45,21 @@ module Generator  #This module contains the date_generator and the shifter/combi
     message.downcase.split('').find_all {|character| @characters.include?(character)}
   end
 
-  def encrypt_return(secret_message, key, date) # This helper formats the return
-    encrypt_hash = {'encryption': secret_message.join, 'key': key, 'date': date}
+  def date_stripper(date)
+    if date.class == Date
+      date.strftime("%d,%m,%y").gsub(/,/,'')
+    else
+      date
+    end
   end
 
+  def encrypt_return(secret_message, key, date) # This helper formats the return
+    encrypt_hash = {'encryption': secret_message.join, 'key': key, 'date': date_stripper(date)}
+  end
+
+
   def decrypt_return(secret_message, key, date) # This helper formats the return
-    decrypt_hash = {'encryption': secret_message.join, 'key': key, 'date': date}
+    decrypt_hash = {'encryption': secret_message.join, 'key': key, 'date': date_stripper(date)}
   end
 
   def key_maker

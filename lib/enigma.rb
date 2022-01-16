@@ -14,7 +14,7 @@ class Enigma
     @characters.rotate(@characters.index(char))
   end
 
-  def encrypt(string, key = key_maker, date = Date.new)
+  def encrypt(string, key = key_maker, date = Date.today)
     #returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.
     key_array = key_grabber(key)
     offset_array = offset_grabber(date)
