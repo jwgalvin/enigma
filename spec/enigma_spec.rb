@@ -69,6 +69,8 @@ describe do Enigma
   it "tests the date stripper" do
     enigma = Enigma.new
     test_date1 = Date.new(1995,8,4)
+    test_date2 = "040895"
     expect(enigma.date_stripper(test_date1)).to eq("040895")
+    expect(enigma.date_stripper(test_date2)).to eq("040895")
   end
 end
