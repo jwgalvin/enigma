@@ -1,21 +1,6 @@
 
 module Generator  #This module contains the date_generator and the shifter/combination.
 
-  # def key_grabber(key)
-  #   pairs = key.split("").map(&:to_i).each_cons(2).map {|num| num.join}
-  # end
-
-  # def reduce_to_keys(key_array) # reduces any key value over 27 the modulo
-  #   reduced_keys = []
-  #   key_array.each do |key|
-  #     key = key.to_i
-  #     if key > 27
-  #       key = key % 27
-  #     end
-  #     reduced_keys << key
-  #   end
-  # end
-
   def offset_grabber(date = Date.today) #this converts the date into the offset
     if date.class == Date
       strip_date = date.strftime("%d,%m,%y").gsub(/,/,'')
