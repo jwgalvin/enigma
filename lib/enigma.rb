@@ -24,12 +24,13 @@ class Enigma
         secret_message << rotation(char).rotate(shift["D"])[0]
       end
     end
-    encrypt_return(secret_message, key, date)
+    reattach_specials(secret_message, string)  && encrypt_return(secret_message, key, date)
   end
 
   def decrypt(string, key , date)# decrypts the text returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.key_array = key_grabber(key)
     shift = shifter(key, offset_grabber(date))
     secret_message = []
+    #remove_specials(string)
     remove_specials(string).each_with_index do |char, index|
       if index % 4 == 0
         secret_message << rotation(char).rotate(-shift["A"])[0]
@@ -41,6 +42,6 @@ class Enigma
         secret_message << rotation(char).rotate(-shift["D"])[0]
       end
     end
-    decrypt_return(secret_message, key, date)
+    reattach_specials(secret_message, string) && decrypt_return(secret_message, key, date)
   end
 end

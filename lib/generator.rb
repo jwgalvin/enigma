@@ -33,6 +33,23 @@ module Generator  #This module contains the date_generator and the shifter/combi
     message.downcase.split('').find_all {|character| @characters.include?(character)}
   end
 
+  def special_syntax(message) # specials that are removed from message are pulled into and array with their index position.
+    array = []
+    message.downcase.split('').each_with_index do |char, index|
+      if !characters.include?(char)
+      array << (char + index.to_s).split
+      end
+    end
+    array
+  end
+
+  def reattach_specials(secret, original)
+    special_syntax(original).each do |char|
+       secret.insert(char[0][1..-1].to_i, char[0][0])
+    end
+    secret.join
+  end
+
   def encrypt_return(secret_message, key, date) # This helper formats the return
     encrypt_hash = {'encryption': secret_message.join, 'key': key, 'date': date_stripper(date)}
   end
