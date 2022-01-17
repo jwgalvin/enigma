@@ -10,12 +10,7 @@ class Enigma
      @characters = ('a'..'z').to_a << ' '
    end
 
-  def rotation(char) # this will rotate to the position argument
-    @characters.rotate(@characters.index(char))
-  end
-
-  def encrypt(string, key = key_maker, date = Date.today)
-    #returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.
+  def encrypt(string, key = key_maker, date = Date.today)  #returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.
     shift = shifter(key, offset_grabber(date))
     secret_message = []
     remove_specials(string).each_with_index do |char, index|
@@ -37,7 +32,6 @@ class Enigma
     secret_message = []
     remove_specials(string).each_with_index do |char, index|
       if index % 4 == 0
-        # binding.pry
         secret_message << rotation(char).rotate(-shift["A"])[0]
       elsif index % 4 == 1
         secret_message << rotation(char).rotate(-shift["B"])[0]
@@ -49,6 +43,4 @@ class Enigma
     end
     decrypt_return(secret_message, key, date)
   end
-
-
 end

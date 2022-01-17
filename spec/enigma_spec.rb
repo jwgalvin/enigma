@@ -5,7 +5,6 @@ require 'rspec'
 require './lib/enigma'
 require './lib/generator'
 
-
 describe do Enigma
   it 'exists' do
     enigma = Enigma.new
@@ -38,8 +37,6 @@ describe do Enigma
   it 'will test offset here, manual input now' do
     enigma = Enigma.new
     expect(enigma.offset_grabber("040895")).to eq("1025")
-    #this will change every day!
-    # expect(enigma.offset_grabber).to be([4, 8, 8, 4])
   end
 
   it 'will test shifter; manual input' do
@@ -48,11 +45,14 @@ describe do Enigma
     expect(enigma.shifter("02715","1025")).to eq({"A"=>3, "B"=>27, "C"=>73, "D"=>20}) #this tests keys and values
   end
 
+  it "will confirm date is reduced to the proper number of digits." do
+    enigma = Enigma.new
+    expect(enigma.offset_grabber(Date.today).length).to eq(4)
+  end
+
   it "will encrypt things" do
     enigma = Enigma.new
     expect(enigma.encrypt("HELLO WORLD", "02715", "040895")).to eq({:encryption => "keder ohulw", :key => "02715", :date => "040895"})
-    #this test is for randomized key and offset.
-    #expect(enigma.encrypt("HELLO WORLD")).to eq({encryption key})
   end
 
   it "will decrypt things" do
@@ -68,14 +68,14 @@ describe do Enigma
     expect(enigma.date_stripper(test_date2)).to eq("040895")
   end
 
-  it "will test decrypted hash" do
-    enigma = Enigma.new
-    expect(enigma.decrypt_return(["k","e","d","e","r", " ", "o", "h", "u", "l", "w"], "02715", "040895")).to eq({ :date => "040895", :decrypted => "keder ohulw", :key => "02715" })
-  end
-
   it "will test encrypted hash" do
     enigma = Enigma.new
     expect(enigma.encrypt_return(["k","e","d","e","r", " ", "o", "h", "u", "l", "w"], "02715", "040895")).to eq({ :date => "040895", :encryption => "keder ohulw", :key => "02715" })
+  end
+
+  it "will test decrypted hash" do
+    enigma = Enigma.new
+    expect(enigma.decrypt_return(["k","e","d","e","r", " ", "o", "h", "u", "l", "w"], "02715", "040895")).to eq({ :date => "040895", :decrypted => "keder ohulw", :key => "02715" })
   end
 
 end
