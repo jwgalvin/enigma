@@ -78,4 +78,8 @@ describe do Enigma
     expect(enigma.decrypt_return(["k","e","d","e","r", " ", "o", "h", "u", "l", "w"], "02715", "040895")).to eq({ :date => "040895", :decrypted => "keder ohulw", :key => "02715" })
   end
 
+  it "will keep the specials removed earlier in an array." do
+    enigma = Enigma.new
+    expect(enigma.special_syntax("D@mn Y_U dirty @pe$!")).to eq([['@1'],["_6"], ["@15"], ["$18"], ["!19"]])
+  end
 end
