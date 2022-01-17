@@ -30,6 +30,7 @@ class Enigma
   def decrypt(string, key , date)# decrypts the text returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.key_array = key_grabber(key)
     shift = shifter(key, offset_grabber(date))
     secret_message = []
+    #remove_specials(string)
     remove_specials(string).each_with_index do |char, index|
       if index % 4 == 0
         secret_message << rotation(char).rotate(-shift["A"])[0]

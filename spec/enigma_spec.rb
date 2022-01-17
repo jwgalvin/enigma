@@ -87,6 +87,6 @@ describe do Enigma
   enigma = Enigma.new
   original = "hello world!"
   hidden = ["k", "e", "d", "e", "r", " ", "o", "h", "u", "l", "w"]
-  expect(enigma.reattach_specials(original, hidden)).to eq("keder ohulw!")
+  expect(enigma.reattach_specials(hidden, original)).to eq("keder ohulw!")
   end
 end
