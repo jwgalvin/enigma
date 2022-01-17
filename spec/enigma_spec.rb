@@ -82,4 +82,11 @@ describe do Enigma
     enigma = Enigma.new
     expect(enigma.special_syntax("D@mn Y_U dirty @pe$!")).to eq([['@1'],["_6"], ["@15"], ["$18"], ["!19"]])
   end
+
+  it "specials removed will be returned in their position." do
+  enigma = Enigma.new
+  original = "hello world!"
+  hidden = ["k", "e", "d", "e", "r", " ", "o", "h", "u", "l", "w"]
+  expect(enigma.reattach_specials(original, hidden)).to eq("keder ohulw!")
+  end
 end
