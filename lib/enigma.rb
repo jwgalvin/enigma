@@ -10,7 +10,7 @@ class Enigma
      @characters = ('a'..'z').to_a << ' '
    end
 
-  def encrypt(string, key = key_maker, date = Date.today)  #returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.
+  def encrypt(string, key = key_maker, date = Date.today)  #encrypts the returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.
     shift = shifter(key, offset_grabber(date))
     secret_message = []
     remove_specials(string).each_with_index do |char, index|
@@ -27,7 +27,7 @@ class Enigma
     encrypt_return(secret_message, key, date)
   end
 
-  def decrypt(string, key , date)#returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.key_array = key_grabber(key)
+  def decrypt(string, key , date)# decrypts the text returns a hash with 3 key value/pairs decyption: string, key:  key, date: date.key_array = key_grabber(key)
     shift = shifter(key, offset_grabber(date))
     secret_message = []
     remove_specials(string).each_with_index do |char, index|
