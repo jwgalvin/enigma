@@ -19,8 +19,8 @@ module Generator  #This module contains the date_generator and the shifter/combi
   end
 
   def shifter(key = key_maker, offset) # This merges the shift and the offset.
-    pairs = key.split("").map(&:to_i).each_cons(2).map {|num| num.join.to_i}
-    # binding.pry
+    pairs = key.split("").map.each_cons(2).map {|num| num.join.to_i}
+     #binding.pry
     encrypt_hash = {
       "A" => (pairs[0].to_i + offset[0].to_i),
       "B" => (pairs[1].to_i + offset[1].to_i),
@@ -64,5 +64,37 @@ module Generator  #This module contains the date_generator and the shifter/combi
 
   def rotation(char) # this will rotate to the position argument
     @characters.rotate(@characters.index(char))
+  end
+
+  def message_rotator(string, key, date, encryption)
+    shift = shifter(key, offset_grabber(date))
+    message = []
+    if encryption == true
+      remove_specials(string).each_with_index do |char, index|
+        if index % 4 == 0
+          message << rotation(char).rotate(shift["A"])[0]
+        elsif index % 4 == 1
+          message << rotation(char).rotate(shift["B"])[0]
+        elsif index % 4 == 2
+          message << rotation(char).rotate(shift["C"])[0]
+        else index % 4 == 3
+          message << rotation(char).rotate(shift["D"])[0]
+        end
+      end
+    elsif encryption == false
+      remove_specials(string).each_with_index do |char, index|
+        if index % 4 == 0
+          message << rotation(char).rotate(-shift["A"])[0]
+        elsif index % 4 == 1
+          message << rotation(char).rotate(-shift["B"])[0]
+        elsif index % 4 == 2
+          message << rotation(char).rotate(-shift["C"])[0]
+        else index % 4 == 3
+          message << rotation(char).rotate(-shift["D"])[0]
+        end
+      end
+    end
+
+    message
   end
 end
